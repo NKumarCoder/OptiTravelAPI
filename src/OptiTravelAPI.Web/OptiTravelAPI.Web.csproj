@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\OptiTravelAPI.ConsolidationSupplierLayer\OptiTravelAPI.ConsolidationSupplierLayer.csproj" />
+    <ProjectReference Include="..\OptiTravelAPI.ConsolidationLayer\OptiTravelAPI.ConsolidationLayer.csproj" />
+    <ProjectReference Include="..\OptiTravelAPI.SupplierLayer\OptiTravelAPI.SupplierLayer.csproj" />
+    <ProjectReference Include="..\OptiTravelAPI.Suppliers\OptiTravelAPI.Suppliers.csproj" />
+    <ProjectReference Include="..\OptiTravelAPI.Shared\OptiTravelAPI.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="11.0.1" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+</Project>

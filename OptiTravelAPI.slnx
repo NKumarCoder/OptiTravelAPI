@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/OptiTravelAPI.ConsolidationLayer/OptiTravelAPI.ConsolidationLayer.csproj" />
+    <Project Path="src/OptiTravelAPI.ConsolidationSupplierLayer/OptiTravelAPI.ConsolidationSupplierLayer.csproj" />
+    <Project Path="src/OptiTravelAPI.Shared/OptiTravelAPI.Shared.csproj" />
+    <Project Path="src/OptiTravelAPI.SupplierLayer/OptiTravelAPI.SupplierLayer.csproj" />
+    <Project Path="src/OptiTravelAPI.Suppliers/OptiTravelAPI.Suppliers.csproj" />
+    <Project Path="src/OptiTravelAPI.Web/OptiTravelAPI.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/OptiTravelAPI.Tests/OptiTravelAPI.Tests.csproj" />
+  </Folder>
+</Solution>

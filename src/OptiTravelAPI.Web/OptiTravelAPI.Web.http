@@ -1,0 +1,6 @@
+@OptiTravelAPI.Web_HostAddress = http://localhost:5228
+
+GET {{OptiTravelAPI.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
