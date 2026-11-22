@@ -120,6 +120,17 @@ public class TboBusSupplierTests
 
         var handler = new MockHttpMessageHandler(req =>
         {
+            if (req.RequestUri!.AbsolutePath == "/api/bus/login")
+            {
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent(JsonSerializer.Serialize(new BusLoginResponse
+                    {
+                        AccessToken = "mock-auth-token"
+                    }))
+                };
+            }
+
             Assert.Equal(HttpMethod.Post, req.Method);
             Assert.Equal("/api/bus/search", req.RequestUri!.AbsolutePath);
             return new HttpResponseMessage(HttpStatusCode.OK)

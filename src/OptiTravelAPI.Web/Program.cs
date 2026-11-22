@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.HttpOverrides;
 using OptiTravelAPI.Web.Extensions;
 using OptiTravelAPI.Web.Middleware;
 
@@ -20,6 +21,14 @@ var builder = WebApplication.CreateBuilder(args);
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
+// Configure Forwarded Headers for reverse-proxy environments (Vercel, Docker, Cloud Run)
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedHost;
+    options.KnownIPNetworks.Clear();
+    options.KnownProxies.Clear();
+});
+
 // Add controllers
 builder.Services.AddControllers();
 
@@ -30,6 +39,9 @@ builder.Services.AddSwaggerDocumentation(builder.Configuration);
 builder.Services.AddOptiTravelLayers(builder.Configuration);
 
 var app = builder.Build();
+
+// Forwarded headers middleware must execute first so Request.Scheme and Request.Host are accurate
+app.UseForwardedHeaders();
 
 // Application lifetime event logging
 var lifetime = app.Services.GetRequiredService<IHostApplicationLifetime>();
@@ -64,7 +76,7 @@ app.UseSwaggerDocumentation(app.Configuration, app.Environment);
 app.MapControllers();
 
 // Redirect root to Swagger UI for instant access
-app.MapGet("/", () => Results.Redirect("/swagger"));
+app.MapGet("/", () => Results.Redirect("/swagger/index.html"));
 
 app.Run();
 
